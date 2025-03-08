@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nam3 | Desarrollo Web & IA</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --background-primary: #ffffff;
+            --background-secondary: #f7f7f7;
+            --text-primary: #37352f;
+            --text-secondary: #6b7280;
+            --accent: #2383e2;
+            --border: #e0e0e0;
+            --shadow: rgba(15, 15, 15, 0.05);
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji";
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-primary);
+            background-color: var(--background-primary);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        /* Navegación */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background-color: var(--background-primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #000;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Hero */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Confianza */
+        .trusted {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .trusted-title {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .trusted-logos {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trusted-logo {
+            height: 30px;
+            opacity: 0.7;
+        }
+
+        /* Características */
+        .features {
+            padding: 6rem 2rem;
+            background-color: var(--background-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--background-primary);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Demostración */
+        .demo {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .demo-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .browser-mockup {
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 15px var(--shadow);
+            overflow: hidden;
+        }
+
+        .browser-header {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background-color: var(--background-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .browser-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background-color: #ff5f57;
+        }
+
+        .dot-yellow {
+            background-color: #febc2e;
+        }
+
+        .dot-green {
+            background-color: #28c840;
+        }
+
+        .browser-content {
+            padding: 1rem;
+            background-color: var(--background-primary);
+        }
+
+        .workspace-mockup {
+            display: flex;
+            min-height: 400px;
+        }
+
+        .sidebar {
+            width: 240px;
+            border-right: 1px solid var(--border);
+            padding: 1rem;
+        }
+
+        .sidebar-item {
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .sidebar-item:hover {
+            background-color: var(--background-secondary);
+        }
+
+        .sidebar-item.active {
+            background-color: rgba(35, 131, 226, 0.1);
+            color: var(--accent);
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 1rem;
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .content-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonios */
+        .testimonials {
+            padding: 6rem 2rem;
+            background-color: var(--background-secondary);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .testimonials-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonials-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: var(--background-primary);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px var(--shadow);
+        }
+
+        .testimonial-content {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--background-secondary);
+            margin-right: 1rem;
+        }
+
+        .author-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .author-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA */
+        .cta {
+            padding: 6rem 2rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--background-secondary);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .workspace-mockup {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">n3</div>
+            <span>nam3</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features" class="nav-link">Características</a>
+            <a href="#demo" class="nav-link">Demostración</a>
+            <a href="#testimonials" class="nav-link">Testimonios</a>
+            <a href="#pricing" class="nav-link">Precios</a>
+        </div>
+        <div class="nav-actions">
+            <button class="btn btn-secondary">Iniciar sesión</button>
+            <button class="btn btn-primary">Prueba gratuita</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1 class="hero-title">Un espacio de trabajo más inteligente</h1>
+        <p class="hero-subtitle">Diseño web, desarrollo e inteligencia artificial en una plataforma intuitiva. El lugar donde tus ideas se transforman en realidad.</p>
+        <div class="hero-actions">
+            <button class="btn btn-primary">Comenzar gratis</button>
+            <button class="btn btn-secondary">Solicitar demo</button>
+        </div>
+    </section>
+
+    <!-- Confianza -->
+    <section class="trusted">
+        <p class="trusted-title">UTILIZADO POR EQUIPOS DE</p>
+        <div class="trusted-logos">
+            <div class="trusted-logo">Google</div>
+            <div class="trusted-logo">Amazon</div>
+            <div class="trusted-logo">Microsoft</div>
+            <div class="trusted-logo">Uber</div>
+            <div class="trusted-logo">Airbnb</div>
+        </div>
+    </section>
+
+    <!-- Características -->
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3 class="feature-title">Diseño Web Moderno</h3>
+                <p class="feature-desc">Interfaces elegantes y funcionales que elevan la experiencia de tus usuarios. Diseñamos con la usabilidad y estética en mente.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h3 class="feature-title">Desarrollo Full-Stack</h3>
+                <p class="feature-desc">Desde el frontend hasta el backend, creamos arquitecturas sólidas utilizando las tecnologías más avanzadas del mercado.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">Integración de IA</h3>
+                <p class="feature-desc">Implementamos soluciones de inteligencia artificial que automatizan procesos y agregan valor inteligente a tus aplicaciones.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Experiencia Móvil</h3>
+                <p class="feature-desc">Aplicaciones responsivas que funcionan perfectamente en cualquier dispositivo, priorizando la experiencia móvil.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Rendimiento Optimizado</h3>
+                <p class="feature-desc">Páginas rápidas y eficientes que mejoran la experiencia del usuario y el posicionamiento en buscadores.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Seguridad Avanzada</h3>
+                <p class="feature-desc">Implementamos las mejores prácticas de seguridad para proteger tus datos y la información de tus usuarios.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demostración -->
+    <section class="demo" id="demo">
+        <div class="demo-header">
+            <h2 class="demo-title">Tu espacio de trabajo, reinventado</h2>
+            <p class="demo-subtitle">Una plataforma que combina lo mejor del desarrollo web con la potencia de la inteligencia artificial.</p>
+        </div>
+        <div class="browser-mockup">
+            <div class="browser-header">
+                <div class="browser-dots">
+                    <div class="browser-dot dot-red"></div>
+                    <div class="browser-dot dot-yellow"></div>
+                    <div class="browser-dot dot-green"></div>
+                </div>
+            </div>
+            <div class="browser-content">
+                <div class="workspace-mockup">
+                    <div class="sidebar">
+                        <div class="sidebar-item active">🏠 Inicio</div>
+                        <div class="sidebar-item">📋 Proyectos</div>
+                        <div class="sidebar-item">🤖 IA Lab</div>
+                        <div class="sidebar-item">📊 Rendimiento</div>
+                        <div class="sidebar-item">💬 Chat</div>
+                        <div class="sidebar-item">⚙️ Configuración</div>
+                    </div>
+                    <div class="content-area">
+                        <h2 class="content-title">Dashboard</h2>
+                        <div class="content-card">
+                            <h4>Progreso de proyectos</h4>
+                            <p>3 proyectos activos, 1 pendiente de aprobación</p>
+                        </div>
+                        <div class="content-card">
+                            <h4>Asistente IA</h4>
+                            <p>¿En qué puedo ayudarte hoy?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-header">
+            <h2 class="testimonials-title">Lo que dicen nuestros clientes</h2>
+            <p class="testimonials-subtitle">Empresas de diferentes sectores que confían en nam3 para sus proyectos digitales.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-content">"La integración de IA en nuestra plataforma web transformó completamente la experiencia de nuestros usuarios. El equipo de nam3 entendió perfectamente nuestras necesidades."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div class="author-info">
+                        <h4>Laura Martínez</h4>
+                        <p>CTO, TechSolutions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-content">"Buscábamos una solución que combinara diseño moderno con inteligencia. nam3 no solo cumplió nuestras expectativas, sino que las superó con creces."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div class="author-info">
+                        <h4>Carlos Rodríguez</h4>
+                        <p>Fundador, InnovateApp</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-content">"La capacidad de nam3 para transformar conceptos complejos en interfaces intuitivas es realmente impresionante. Han revolucionado nuestra presencia digital."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar"></div>
+                    <div class="author-info">
+                        <h4>Ana López</h4>
+                        <p>Directora de Marketing, GlobalRetail</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">Comienza tu transformación digital hoy</h2>
+        <p class="cta-subtitle">Únete a cientos de empresas que ya están aprovechando el poder de la web y la inteligencia artificial.</p>
+        <div class="hero-actions">
+            <button class="btn btn-primary">Comenzar gratis</button>
+            <button class="btn btn-secondary">Contactar con ventas</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>nam3</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Sobre nosotros</a></li>
+                    <li><a href="#" class="footer-link">Casos de éxito</a></li>
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                    <li><a href="#" class="footer-link">Carreras</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Producto</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Características</a></li>
+                    <li><a href="#" class="footer-link">Precios</a></li>
+                    <li><a href="#" class="footer-link">Seguridad</a></li>
+                    <li><a href="#" class="footer-link">Integraciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Recursos</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Documentación</a></li>
+                    <li><a href="#" class="footer-link">Guías</a></li>
+                    <li><a href="#" class="footer-link">Webinars</a></li>
+                    <li><a href="#" class="footer-link">API</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">info@nam3.com</a></li>
+                    <li><a href="#" class="footer-link">+34 900 123 456</a></li>
+                    <li><a href="#" class="footer-link">Soporte</a></li>
+                    <li><a href="#" class="footer-link">Ventas</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 nam3. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
