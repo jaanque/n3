@@ -31,8 +31,8 @@
 }
 
 // File: .env.local
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url_here
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+NEXT_PUBLIC_SUPABASE_URL=https://nyazdlfhrtkhqdfnsmnj.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im55YXpkbGZocnRraHFkZm5zbW5qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE1MzgyNTUsImV4cCI6MjA1NzExNDI1NX0.sZnz2b4eR3R_rPf1WnwYkOjLinhoW2FKtjO1fz_boqA
 URL_DOMAIN=nam3.es
 
 // File: lib/supabase.js
